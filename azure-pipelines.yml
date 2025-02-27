@@ -1,0 +1,16 @@
+trigger:
+- main  # Your trigger branch (can be adjusted)
+
+pool:
+  name: 'Default'  # This should be your self-hosted agent pool name
+
+jobs:
+- job: ConnectToMySQL
+  pool:
+    name: 'YourAgentPool'  # Specify your self-hosted agent pool here
+  steps:
+  - task: MySql@2
+    inputs:
+      sqlConnectionString: 'Server=127.0.0.1;Port=3306;Database=homegate;User Id=root;Password=Tamsin1901;'
+      sqlFile: 'scripts/setup.sql'  # SQL script you want to run, if any
+    displayName: 'Run MySQL Script'
